@@ -13,6 +13,10 @@ function App() {
   const { isLoading, isSuccess, isError, data, errorMessage } =
     useGetMovieList(url);
 
+  const DataNotFoundFallback = () => {
+    return <h1>Error: Data Not Found</h1>;
+  };
+
   //console.log("Applied Filters: ", listOfAppliedFilters);
 
   // Function to remove a filter from the filters state
@@ -57,15 +61,21 @@ function App() {
 
   return (
     <div className="App">
-      <Header
-        appliedFilterList={listOfAppliedFilters}
-        onAppliedFilter={setListOfAppliedFilters}
-      />
-      <AppliedFilters
-        appliedFilterList={listOfAppliedFilters}
-        onClick={removeFilter}
-      />
-      <Body movies={movies} />
+      {isError ? (
+        <DataNotFoundFallback />
+      ) : (
+        <>
+          <Header
+            appliedFilterList={listOfAppliedFilters}
+            onAppliedFilter={setListOfAppliedFilters}
+          />
+          <AppliedFilters
+            appliedFilterList={listOfAppliedFilters}
+            onClick={removeFilter}
+          />
+          <Body movies={movies} />
+        </>
+      )}
     </div>
   );
 }
