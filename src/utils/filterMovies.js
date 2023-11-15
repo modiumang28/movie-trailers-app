@@ -11,7 +11,7 @@ const filterMovies = (movieData, appliedFilterList) => {
       );
     });
   });
-  console.log("Updated movies: ", updatedMovieList);
+  // console.log("Updated movies: ", updatedMovieList);
   return updatedMovieList;
 };
 

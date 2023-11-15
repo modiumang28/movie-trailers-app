@@ -13,7 +13,24 @@ function App() {
   const { isLoading, isSuccess, isError, data, errorMessage } =
     useGetMovieList(url);
 
-  console.log("Applied Filters: ", listOfAppliedFilters);
+  //console.log("Applied Filters: ", listOfAppliedFilters);
+
+  // Function to remove a filter from the filters state
+  const removeFilter = (filter) => {
+    console.log(filter);
+    const filteredList = listOfAppliedFilters.filter((value) => {
+      if (value.optionId === filter.optionId) {
+        if (value.isSelected) {
+          value.isSelected = false;
+        }
+        console.log(value);
+      } else {
+        return true;
+      }
+    });
+    console.log();
+    setListOfAppliedFilters(filteredList);
+  };
 
   // useEffect to set movies state
   useEffect(() => {
@@ -23,10 +40,18 @@ function App() {
   }, [isSuccess]);
 
   useEffect(() => {
-    if (isSuccess && listOfAppliedFilters.length !== 0 && data) {
+    // console.log("Triggered");
+    console.log(listOfAppliedFilters);
+    if (isSuccess && data) {
       const movieData = Object.values(data.moviesData).slice(0, 102);
-      const updatedMoviesList = filterMovies(movieData, listOfAppliedFilters);
-      setMovies([...updatedMoviesList]);
+      if (isSuccess && listOfAppliedFilters.length !== 0 && data) {
+        const updatedMoviesList = filterMovies(movieData, listOfAppliedFilters);
+        console.log("Updated movies: ", updatedMoviesList);
+        setMovies(updatedMoviesList);
+      } else if (listOfAppliedFilters.length === 0) {
+        console.log(movieData);
+        setMovies(movieData);
+      }
     }
   }, [listOfAppliedFilters]);
 
@@ -36,7 +61,10 @@ function App() {
         appliedFilterList={listOfAppliedFilters}
         onAppliedFilter={setListOfAppliedFilters}
       />
-      <AppliedFilters appliedFilterList={listOfAppliedFilters} />
+      <AppliedFilters
+        appliedFilterList={listOfAppliedFilters}
+        onClick={removeFilter}
+      />
       <Body movies={movies} />
     </div>
   );

@@ -51,10 +51,8 @@ const Dropdown = (props) => {
 
   const onSelectFilter = (selectedItems, item) => {
     onSelect((prevState) => {
-      // console.log("Previous state: ", prevState);
       // if true then we know we have to compare from previous state
       if (isFilterSelected) {
-        //console.log(isFilterSelected);
         const uniqueNewElements = selectedItems.filter((newElement) => {
           // if previous state is empty it means that the first item has been clicked
           if (prevState.length > 0) {
@@ -62,21 +60,14 @@ const Dropdown = (props) => {
               (existingElement) =>
                 existingElement.optionId !== newElement.optionId
             );
-            //   console.log(boolean);
-            // return boolean;
           } else {
-            // console.log("Else statement");
             return newElement;
           }
         });
 
-        // const uniqueElements = uniqueNewElements;
-        // console.log([...prevState, ...uniqueNewElements]);
         // Combine the existing array with the unique new elements
         return [...prevState, ...uniqueNewElements];
-        // return [...prevState, ...uniqueNewElements];
       } else {
-        // console.log("Outer else");
         return prevState.filter(
           (previousStateItem) => previousStateItem.optionId !== item.optionId
         );
