@@ -1,3 +1,4 @@
+import Actions from "../../components/Actions/Actions";
 import Button from "../../components/common/Button/Button";
 import "./Header.css";
 
@@ -9,7 +10,9 @@ const Header = () => {
         <Button label="COMING SOON" className="btn-primary" />
         <Button label="NOW SHOWING" className="btn-secondary" />
       </div>
-      <div className="header-right"></div>
+      <div className="header-right">
+        <Actions />
+      </div>
     </div>
   );
 };
