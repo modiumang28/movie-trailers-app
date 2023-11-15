@@ -14,7 +14,7 @@ function App() {
   // useEffect to set movies state
   useEffect(() => {
     if (isSuccess) {
-      setMovies(Object.values(data.moviesData).slice(0, 102));
+      setMovies(Object.values(data.moviesData).slice(10, 102));
     }
   }, [isSuccess]);
 
