@@ -1,0 +1,21 @@
+.movie-rating {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.rating-img {
+  padding: 10px;
+  border: 1.5px solid white;
+  border-radius: 50%;
+  margin-bottom: 6px;
+}
+
+.rating-type {
+  font-size: 0.8rem;
+  margin-bottom: 3px;
+}
+
+.rating-vote {
+  font-size: 0.7rem;
+}

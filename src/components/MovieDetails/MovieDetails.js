@@ -6,10 +6,12 @@ import {
   questionImg,
 } from "../../assets/images";
 import Button from "../common/Button/Button";
+import Feedback from "../common/Feedback/Feedback";
+import MovieStats from "../common/MovieStats/MovieStats";
 import "./MovieDetails.css";
 
 const MovieDetails = ({ movie }) => {
-  // Function that returns an array of genre for each movie
+  // Function to get an array of genre for each movie
   const splitGenreToArray = (genre) => {
     return genre.split("|");
   };
@@ -27,20 +29,16 @@ const MovieDetails = ({ movie }) => {
           })}
         </div>
         <div className="votes-container">
-          <span>
-            <img src={likeImg} height="30px" width="30px" />
-            <div>
-              <div>{`${movie.wtsPerc}%`}</div>
-              <div>{`${movie.csCount} votes`}</div>
-            </div>
-          </span>
-          <span>
-            <img src={calendarImg} height="30px" width="30px" />
-            <div>
-              <div>{`${movie.DispReleaseDate.split(" ")[0]}`}</div>
-              <div>{`${movie.MonthID.slice(0, 4)}`}</div>
-            </div>
-          </span>
+          <MovieStats
+            src={likeImg}
+            type={`${movie.wtsPerc}%`}
+            value={`${movie.csCount} votes`}
+          />
+          <MovieStats
+            src={calendarImg}
+            type={`${movie.DispReleaseDate.split(" ")[0]}`}
+            value={`${movie.MonthID.slice(0, 4)}`}
+          />
         </div>
         <div className="movie-about">
           Lorem Ipsum has been the industry's standard dummy text ever since the
@@ -49,27 +47,13 @@ const MovieDetails = ({ movie }) => {
         </div>
       </div>
       <div className="movie-ratings-container">
-        <div className="movie-rating">
-          <div className="rating-img">
-            <img src={likeImg} height="20px" width="25px" />
-          </div>
-          <div className="rating-type">WILL WATCH</div>
-          <div className="rating-vote">{`(${movie.wtsCount})`}</div>
-        </div>
-        <div className="movie-rating">
-          <div className="rating-img">
-            <img src={questionImg} height="20px" width="25px" />
-          </div>
-          <div className="rating-type">MAYBE</div>
-          <div className="rating-vote">{`(${movie.maybeCount})`}</div>
-        </div>
-        <div className="movie-rating">
-          <div className="rating-img">
-            <img src={dislikeImg} height="20px" width="25px" />
-          </div>
-          <div className="rating-type">WON'T WATCH</div>
-          <div className="rating-vote">{`(${movie.dwtsCount})`}</div>
-        </div>
+        <Feedback src={likeImg} type="WILL WATCH" vote={`${movie.wtsCount}`} />
+        <Feedback src={questionImg} type="MAYBE" vote={`${movie.maybeCount}`} />
+        <Feedback
+          src={dislikeImg}
+          type="WON'T WATCH"
+          vote={`${movie.dwtsCount}`}
+        />
       </div>
     </div>
   );
