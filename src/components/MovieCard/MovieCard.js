@@ -1,4 +1,4 @@
-import Play from "../../assets/Play/Play";
+import { Play } from "../../assets";
 import "./MovieCard.css";
 
 const MovieCard = ({ movie, onClick }) => {

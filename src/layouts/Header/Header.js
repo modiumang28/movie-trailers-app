@@ -2,7 +2,7 @@ import Actions from "../../components/Actions/Actions";
 import Button from "../../components/common/Button/Button";
 import "./Header.css";
 
-const Header = () => {
+const Header = ({ appliedFilterList, onAppliedFilter }) => {
   return (
     <div className="header">
       <div className="header-left">
@@ -11,7 +11,10 @@ const Header = () => {
         <Button label="NOW SHOWING" className="btn-secondary" />
       </div>
       <div className="header-right">
-        <Actions />
+        <Actions
+          appliedFilterList={appliedFilterList}
+          onAppliedFilter={onAppliedFilter}
+        />
       </div>
     </div>
   );
