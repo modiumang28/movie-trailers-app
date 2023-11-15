@@ -41,15 +41,15 @@ function App() {
 
   useEffect(() => {
     // console.log("Triggered");
-    console.log(listOfAppliedFilters);
+    // console.log(listOfAppliedFilters);
     if (isSuccess && data) {
       const movieData = Object.values(data.moviesData).slice(0, 102);
       if (isSuccess && listOfAppliedFilters.length !== 0 && data) {
         const updatedMoviesList = filterMovies(movieData, listOfAppliedFilters);
-        console.log("Updated movies: ", updatedMoviesList);
+        // console.log("Updated movies: ", updatedMoviesList);
         setMovies(updatedMoviesList);
       } else if (listOfAppliedFilters.length === 0) {
-        console.log(movieData);
+        // console.log(movieData);
         setMovies(movieData);
       }
     }

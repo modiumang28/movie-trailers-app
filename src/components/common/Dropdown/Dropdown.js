@@ -77,26 +77,30 @@ const Dropdown = (props) => {
   };
 
   const onItemClick = (item) => {
-    isFilterSelected = !item.isSelected ? true : false; // if isFilterSelected comes out to be true we will know that the item has been checked
-    // setIsFilterSelected(boolVal);
-    const updatedDropdownItems = dropdownItems.map((dropdownItem) =>
-      dropdownItem.optionId === item.optionId
-        ? { ...dropdownItem, isSelected: !dropdownItem.isSelected }
-        : { ...dropdownItem }
-    );
+    if (enableCheckBox) {
+      isFilterSelected = !item.isSelected ? true : false; // if isFilterSelected comes out to be true we will know that the item has been checked
+      // setIsFilterSelected(boolVal);
+      const updatedDropdownItems = dropdownItems.map((dropdownItem) =>
+        dropdownItem.optionId === item.optionId
+          ? { ...dropdownItem, isSelected: !dropdownItem.isSelected }
+          : { ...dropdownItem }
+      );
 
-    const selectedItems = updatedDropdownItems.filter(
-      (item) => item.isSelected
-    );
+      const selectedItems = updatedDropdownItems.filter(
+        (item) => item.isSelected
+      );
 
-    const inputValue = selectedItems.map((item) => item[keyToRead]).join(", ");
+      const inputValue = selectedItems
+        .map((item) => item[keyToRead])
+        .join(", ");
 
-    // console.log("Selected Elements: ", selectedItems);
-    onSelectFilter(selectedItems, item);
-    // console.log("Unique Elements", appliedFilterList);
-    // onSelect(uniqueElements);
-    setDropdownValue(inputValue);
-    setDropdownItems([...updatedDropdownItems]);
+      // console.log("Selected Elements: ", selectedItems);
+      onSelectFilter(selectedItems, item);
+      // console.log("Unique Elements", appliedFilterList);
+      // onSelect(uniqueElements);
+      setDropdownValue(inputValue);
+      setDropdownItems([...updatedDropdownItems]);
+    }
   };
 
   useEffect(() => {
