@@ -1,0 +1,15 @@
+.movie-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: rgb(27, 27, 27);
+  padding: 10px;
+  padding-top: 30px;
+}
+
+.rol {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 0px;
+}

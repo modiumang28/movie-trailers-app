@@ -1,3 +1,5 @@
+import MovieCard from "../../components/MovieCard/MovieCard";
+
 const Body = ({ movies }) => {
   const itemsPerRow = 6;
   return (
@@ -7,7 +9,7 @@ const Body = ({ movies }) => {
           {index % itemsPerRow === 0 && (
             <div key={`row-${index / itemsPerRow}`} className="rol">
               {movies?.slice(index, index + itemsPerRow).map((rowItem) => (
-                <h1>{rowItem.EventTitle}</h1>
+                <MovieCard key={rowItem.EventCode} movie={rowItem} />
               ))}
             </div>
           )}
