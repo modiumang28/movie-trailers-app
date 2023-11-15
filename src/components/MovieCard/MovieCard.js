@@ -1,12 +1,12 @@
 import Play from "../../assets/Play/Play";
 import "./MovieCard.css";
 
-const MovieCard = ({ movie }) => {
+const MovieCard = ({ movie, onClick }) => {
   const { EventImageUrl, EventTitle } = movie;
 
   return (
     <div className="items">
-      <div className="play-icon">
+      <div className="play-icon" onClick={() => onClick(movie)}>
         <Play />
       </div>
       <div className="movie-image">
