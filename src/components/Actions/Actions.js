@@ -11,9 +11,11 @@ const Actions = ({ appliedFilterList, onAppliedFilter }) => {
   const { isLoading, isSuccess, isError, data, errorMessage } =
     useGetMovieList(url);
 
+  // useEffect to set languages state
   useEffect(() => {
     if (isSuccess && languages.length === 0 && data) {
       const { languageList } = data;
+      // return an updated languages array while adding Id for each language
       const modifiedLanguageList = languageList.map((lang, index) => {
         return { value: lang, id: index };
       });

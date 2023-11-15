@@ -9,8 +9,10 @@ const Body = ({ movies }) => {
     movieId: null,
   });
 
+  // Set the number of movies we want in a single row
   const itemsPerRow = 6;
 
+  // Function to handle movie click and open Movie Trailer
   const handleMovieClick = (movie) => {
     setShowMovieDetails({ movieId: movie.EventCode });
   };

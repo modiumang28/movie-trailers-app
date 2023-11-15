@@ -13,6 +13,7 @@ function App() {
   const { isLoading, isSuccess, isError, data, errorMessage } =
     useGetMovieList(url);
 
+  // Fallback for handling error
   const DataNotFoundFallback = () => {
     return <h1>Error: Data Not Found</h1>;
   };
