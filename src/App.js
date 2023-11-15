@@ -17,22 +17,17 @@ function App() {
     return <h1>Error: Data Not Found</h1>;
   };
 
-  //console.log("Applied Filters: ", listOfAppliedFilters);
-
   // Function to remove a filter from the filters state
   const removeFilter = (filter) => {
-    console.log(filter);
     const filteredList = listOfAppliedFilters.filter((value) => {
       if (value.optionId === filter.optionId) {
         if (value.isSelected) {
           value.isSelected = false;
         }
-        console.log(value);
       } else {
         return true;
       }
     });
-    console.log();
     setListOfAppliedFilters(filteredList);
   };
 
@@ -43,17 +38,14 @@ function App() {
     }
   }, [isSuccess]);
 
+  // useEffect to set movies state on the basis of applied filters
   useEffect(() => {
-    // console.log("Triggered");
-    // console.log(listOfAppliedFilters);
     if (isSuccess && data) {
       const movieData = Object.values(data.moviesData).slice(0, 102);
       if (isSuccess && listOfAppliedFilters.length !== 0 && data) {
         const updatedMoviesList = filterMovies(movieData, listOfAppliedFilters);
-        // console.log("Updated movies: ", updatedMoviesList);
         setMovies(updatedMoviesList);
       } else if (listOfAppliedFilters.length === 0) {
-        // console.log(movieData);
         setMovies(movieData);
       }
     }

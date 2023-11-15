@@ -64,7 +64,6 @@ const Dropdown = (props) => {
             return newElement;
           }
         });
-
         // Combine the existing array with the unique new elements
         return [...prevState, ...uniqueNewElements];
       } else {
@@ -72,14 +71,12 @@ const Dropdown = (props) => {
           (previousStateItem) => previousStateItem.optionId !== item.optionId
         );
       }
-      // Identify the unique new elements that are not already in the existing array
     });
   };
 
   const onItemClick = (item) => {
     if (enableCheckBox) {
-      isFilterSelected = !item.isSelected ? true : false; // if isFilterSelected comes out to be true we will know that the item has been checked
-      // setIsFilterSelected(boolVal);
+      isFilterSelected = !item.isSelected ? true : false;
       const updatedDropdownItems = dropdownItems.map((dropdownItem) =>
         dropdownItem.optionId === item.optionId
           ? { ...dropdownItem, isSelected: !dropdownItem.isSelected }
@@ -94,10 +91,7 @@ const Dropdown = (props) => {
         .map((item) => item[keyToRead])
         .join(", ");
 
-      // console.log("Selected Elements: ", selectedItems);
       onSelectFilter(selectedItems, item);
-      // console.log("Unique Elements", appliedFilterList);
-      // onSelect(uniqueElements);
       setDropdownValue(inputValue);
       setDropdownItems([...updatedDropdownItems]);
     }
