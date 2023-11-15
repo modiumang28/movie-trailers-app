@@ -7,9 +7,12 @@ const url = "https://in.bmscdn.com/m6/static/interview-mock/data.json";
 
 function App() {
   const [movies, setMovies] = useState(null);
+  const [listOfAppliedFilters, setListOfAppliedFilters] = useState([]);
 
   const { isLoading, isSuccess, isError, data, errorMessage } =
     useGetMovieList(url);
+
+  console.log("Applied Filters: ", listOfAppliedFilters);
 
   // useEffect to set movies state
   useEffect(() => {
@@ -20,7 +23,10 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
+      <Header
+        appliedFilterList={listOfAppliedFilters}
+        onAppliedFilter={setListOfAppliedFilters}
+      />
       <AppliedFilters />
       <Body movies={movies} />
     </div>

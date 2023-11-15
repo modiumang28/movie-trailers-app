@@ -7,7 +7,6 @@ const Dropdown = (props) => {
   const {
     options,
     onSelect,
-    appliedFilterList,
     keyToRead = "",
     placeholder = "Select",
     name,
@@ -20,10 +19,10 @@ const Dropdown = (props) => {
   const [dropdownItems, setDropdownItems] = useState([]);
   const [dropdownValue, setDropdownValue] = useState("");
 
+  let isFilterSelected;
+
   const handleDropdown = () => {
     setIsOpen(!isOpen);
-    // !isOpen && onClick && onClick();
-    // return isDisabled ? setIsOpen(false) : setIsOpen(!isOpen);
   };
 
   const isItemSelected = (isSelected) =>
@@ -49,6 +48,65 @@ const Dropdown = (props) => {
       </li>
     </ul>
   );
+
+  const onSelectFilter = (selectedItems, item) => {
+    onSelect((prevState) => {
+      // console.log("Previous state: ", prevState);
+      // if true then we know we have to compare from previous state
+      if (isFilterSelected) {
+        //console.log(isFilterSelected);
+        const uniqueNewElements = selectedItems.filter((newElement) => {
+          // if previous state is empty it means that the first item has been clicked
+          if (prevState.length > 0) {
+            return prevState.every(
+              (existingElement) =>
+                existingElement.optionId !== newElement.optionId
+            );
+            //   console.log(boolean);
+            // return boolean;
+          } else {
+            // console.log("Else statement");
+            return newElement;
+          }
+        });
+
+        // const uniqueElements = uniqueNewElements;
+        // console.log([...prevState, ...uniqueNewElements]);
+        // Combine the existing array with the unique new elements
+        return [...prevState, ...uniqueNewElements];
+        // return [...prevState, ...uniqueNewElements];
+      } else {
+        // console.log("Outer else");
+        return prevState.filter(
+          (previousStateItem) => previousStateItem.optionId !== item.optionId
+        );
+      }
+      // Identify the unique new elements that are not already in the existing array
+    });
+  };
+
+  const onItemClick = (item) => {
+    isFilterSelected = !item.isSelected ? true : false; // if isFilterSelected comes out to be true we will know that the item has been checked
+    // setIsFilterSelected(boolVal);
+    const updatedDropdownItems = dropdownItems.map((dropdownItem) =>
+      dropdownItem.optionId === item.optionId
+        ? { ...dropdownItem, isSelected: !dropdownItem.isSelected }
+        : { ...dropdownItem }
+    );
+
+    const selectedItems = updatedDropdownItems.filter(
+      (item) => item.isSelected
+    );
+
+    const inputValue = selectedItems.map((item) => item[keyToRead]).join(", ");
+
+    // console.log("Selected Elements: ", selectedItems);
+    onSelectFilter(selectedItems, item);
+    // console.log("Unique Elements", appliedFilterList);
+    // onSelect(uniqueElements);
+    setDropdownValue(inputValue);
+    setDropdownItems([...updatedDropdownItems]);
+  };
 
   useEffect(() => {
     if (
@@ -90,7 +148,11 @@ const Dropdown = (props) => {
           {Array.isArray(options) && options?.length !== 0 && (
             <ul className="Dropdown-menu">
               {dropdownItems?.map((item) => (
-                <li className={isItemSelected(item?.isSelected)} key={uuidv4()}>
+                <li
+                  className={isItemSelected(item?.isSelected)}
+                  key={uuidv4()}
+                  onClick={() => onItemClick(item)}
+                >
                   {enableCheckBox && (
                     <input
                       className="checkbox"
