@@ -24,3 +24,12 @@
   text-align: center;
   padding: 10px 0;
 }
+
+.play-icon {
+  width: 233px;
+  height: 100%;
+  position: absolute;
+  top: -15px;
+  display: grid;
+  place-items: center;
+}

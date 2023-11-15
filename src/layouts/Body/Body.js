@@ -1,4 +1,5 @@
 import MovieCard from "../../components/MovieCard/MovieCard";
+import "./Body.css";
 
 const Body = ({ movies }) => {
   const itemsPerRow = 6;

@@ -1,3 +1,4 @@
+import Play from "../../assets/Play/Play";
 import "./MovieCard.css";
 
 const MovieCard = ({ movie }) => {
@@ -5,7 +6,9 @@ const MovieCard = ({ movie }) => {
 
   return (
     <div className="items">
-      <div className="play-icon">Play Icon</div>
+      <div className="play-icon">
+        <Play />
+      </div>
       <div className="movie-image">
         <img src={EventImageUrl} alt={`${EventTitle}-poster`} />
       </div>
