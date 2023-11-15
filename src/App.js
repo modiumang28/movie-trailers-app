@@ -3,6 +3,7 @@ import useGetMovieList from "./customHooks/useGetMovieList/useGetMovieList";
 import AppliedFilters from "./layouts/AppliedFilters/AppliedFilters";
 import Body from "./layouts/Body/Body";
 import Header from "./layouts/Header/Header";
+import filterMovies from "./utils/filterMovies";
 const url = "https://in.bmscdn.com/m6/static/interview-mock/data.json";
 
 function App() {
@@ -20,6 +21,13 @@ function App() {
       setMovies(Object.values(data.moviesData).slice(10, 102));
     }
   }, [isSuccess]);
+
+  useEffect(() => {
+    if (isSuccess && listOfAppliedFilters.length !== 0 && data) {
+      const movieData = Object.values(data.moviesData).slice(10, 40);
+      filterMovies(movieData, listOfAppliedFilters);
+    }
+  });
 
   return (
     <div className="App">
