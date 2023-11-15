@@ -1,1 +1,21 @@
+.btn-primary {
+  background-color: rgb(105, 184, 145);
+  font-size: 0.8rem;
+  color: rgb(241, 241, 241);
+  border: none;
+  padding: 8px;
+  width: 130px;
+  border-radius: 3px;
+  margin: 0 10px;
+}
 
+.btn-secondary {
+  background-color: rgb(50, 50, 50);
+  font-size: 0.8rem;
+  color: rgb(208, 206, 206);
+  border: none;
+  padding: 8px;
+  width: 130px;
+  border-radius: 3px;
+  margin: 0 5px;
+}

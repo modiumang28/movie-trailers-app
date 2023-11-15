@@ -1,0 +1,17 @@
+.header {
+  display: flex;
+  align-items: center;
+  background-color: black;
+  color: rgb(215, 213, 213);
+  height: 80px;
+}
+
+.header-left {
+  width: 100%;
+  display: flex;
+}
+
+.header-name {
+  font-size: 1.5rem;
+  margin: 0 15px 0 10px;
+}
