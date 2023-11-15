@@ -24,10 +24,11 @@ function App() {
 
   useEffect(() => {
     if (isSuccess && listOfAppliedFilters.length !== 0 && data) {
-      const movieData = Object.values(data.moviesData).slice(10, 40);
-      filterMovies(movieData, listOfAppliedFilters);
+      const movieData = Object.values(data.moviesData).slice(0, 102);
+      const updatedMoviesList = filterMovies(movieData, listOfAppliedFilters);
+      setMovies([...updatedMoviesList]);
     }
-  });
+  }, [listOfAppliedFilters]);
 
   return (
     <div className="App">
@@ -35,7 +36,7 @@ function App() {
         appliedFilterList={listOfAppliedFilters}
         onAppliedFilter={setListOfAppliedFilters}
       />
-      <AppliedFilters />
+      <AppliedFilters appliedFilterList={listOfAppliedFilters} />
       <Body movies={movies} />
     </div>
   );

@@ -1,0 +1,31 @@
+.filter-container {
+  padding-left: 10px;
+  display: flex;
+  align-items: center;
+  height: 40px;
+  color: rgb(195, 193, 193);
+  padding-top: 20px;
+  background-color: #1b1b1b;
+}
+
+.filter-box {
+  margin: 10px 5px;
+  padding: 10px 20px;
+  height: 35px;
+  background-color: #282c34;
+  color: white;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.remove-icon {
+  display: grid;
+  place-items: center;
+}
+
+.remove-icon:hover {
+  cursor: pointer;
+}
